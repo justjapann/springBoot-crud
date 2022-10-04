@@ -13,13 +13,14 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PRODUCT_TBL")
-public class Product {
+@Table(name = "FichaCliente")
+public class Paciente {
 
     @Id
     @GeneratedValue
     private int id;
-    private String name;
-    private int quantity;
-    private double price;
+    private String nomePaciente;
+    private int numeroCarteiraPlano;
+    private int idPlanoDeSaude;
+    private int idEspecialidade;
 }
