@@ -1,26 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { CreatePacienteComponent } from './CreatePaciente/create-paciente.component';
-import { PacienteDetailsComponentTs } from './DetailsPaciente/paciente-details.component.ts';
-import { PacienteListComponent } from './PacienteList/paciente-list.component';
-
 import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import {DataTablesModule} from 'angular-datatables';
+import { PacienteListComponent } from './paciente-list/paciente-list.component';
+import { AddPacienteComponent } from './add-paciente/add-paciente.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreatePacienteComponent,
-    PacienteDetailsComponentTs,
-    PacienteListComponent
+    PacienteListComponent,
+    AddPacienteComponent,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    AppRoutingModule,
     FormsModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

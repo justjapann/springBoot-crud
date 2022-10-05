@@ -1,13 +1,12 @@
-import { PacienteDetailsComponentTs } from './DetailsPaciente/paciente-details.component.ts';
-import { CreatePacienteComponent } from './CreatePaciente/create-paciente.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PacienteListComponent } from './PacienteList/paciente-list.component';
+import { PacienteListComponent } from './paciente-list/paciente-list.component';
+import { AddPacienteComponent } from './add-paciente/add-paciente.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'paciente', pathMatch: 'full' },
-  { path: 'pacientes', component: PacienteListComponent },
-  { path: 'add', component: CreatePacienteComponent },
+  { path: '', redirectTo: 'view-paciente', pathMatch: 'full' },
+  { path: 'view-paciente', component: PacienteListComponent },
+  { path: 'add-paciente', component: AddPacienteComponent },
 ];
 
 @NgModule({

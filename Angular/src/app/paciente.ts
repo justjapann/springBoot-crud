@@ -1,10 +1,10 @@
 export class Paciente {
-  id: number;
-  nomePaciente: string;
-  numeroCarteiraPlano:number;
-  idPlanoDeSaude:number;
-  idEspecialidade:number;
-  active: boolean;
+
+  paciente_id: number;
+  paciente_name: string;
+  paciente_carteiradeplano:number;
+  paciente_planodesaude:string;
+  paciente_especialidade:string;
 }
 
 
