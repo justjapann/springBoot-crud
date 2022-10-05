@@ -75,13 +75,19 @@ public class Paciente_DAO_Imp  implements Paciente_DAO{
     @Override
     public boolean updatePaciente(Paciente paciente) {
         boolean status=false;
-        try {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query query=currentSession.createQuery("from Paciente where paciente_name=:paciente_name and paciente_especialidade=:paciente_especialidade", Paciente.class);
+        query.setParameter("paciente_name", paciente.getPaciente_name());
+        query.setParameter("paciente_especialidade", paciente.getPaciente_especialidade());
+        List list = query.list();
+        System.out.println("lista aqui update = " + list);
+
+        if (list.isEmpty()) {
             sessionFactory.getCurrentSession().update(paciente);
-            status=true;
-        } catch (Exception e) {
-            e.printStackTrace();
+            return true;
+        }else{
+            return false;
         }
-        return status;
     }
 
 

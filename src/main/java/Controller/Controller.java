@@ -2,14 +2,7 @@ package Controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import Model.Paciente;
 import Service.Paciente_Service;
@@ -54,7 +47,7 @@ public class Controller {
 
     }
 
-    @PostMapping("update-paciente/{paciente_id}")
+    @PutMapping("update-paciente/{paciente_id}")
     public boolean updatePaciente(@RequestBody Paciente paciente,@PathVariable("paciente_id") int paciente_id) {
         paciente.setPaciente_id(paciente_id);
         return pacienteservice.updatePaciente(paciente);

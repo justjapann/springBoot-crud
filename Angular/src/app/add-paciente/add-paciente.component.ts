@@ -39,8 +39,9 @@ export class AddPacienteComponent implements OnInit {
 
   save() {
     this.pacienteservice.createPaciente(this.paciente)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => console.log("data aqui " +data), error => console.log("erro aqui " +error));
     this.paciente = new Paciente();
+
   }
 
   get PacienteName(){

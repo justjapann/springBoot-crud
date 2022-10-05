@@ -63,7 +63,7 @@
 <div class="row">
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
-    <div [hidden]="!submitted">
+    <div [hidden]="!submitted" *ngIf="">
       <h4>Paciente adicionado com sucesso!</h4>
       <button (click)="addPacienteForm()" class='btn btn-primary'>Criar nova ficha</button>
     </div>
