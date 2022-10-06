@@ -11,7 +11,7 @@ export class AddPacienteComponent implements OnInit {
 
   constructor(private pacienteservice:PacienteService) { }
 
-  paciente : Paciente = new Paciente();
+  paciente : Paciente=new Paciente();
   submitted = false;
 
   ngOnInit() {
@@ -19,16 +19,16 @@ export class AddPacienteComponent implements OnInit {
   }
 
   pacientesaveform=new FormGroup({
-    paciente_name:new FormControl('' , [Validators.required , Validators.minLength(5) ] ),
-    paciente_carteiradeplano:new FormControl(''),
-    paciente_planodesaude:new FormControl(''),
-    paciente_especialidade:new FormControl(''),
+    paciente_name:new FormControl('' , [Validators.required , Validators.minLength(4) ] ),
+    paciente_carteiradeplano:new FormControl('',[Validators.required,Validators.email]),
+    paciente_planodesaude:new FormControl(),
+    paciente_especialidade:new FormControl(),
   });
 
   savePaciente(savePaciente){
     this.paciente=new Paciente();
     this.paciente.paciente_name=this.PacienteName.value;
-    this.paciente.paciente_carteiradeplano=this.PacienteCarteiradeplano.value;
+    this.paciente.paciente_carteiradeplano=this.PacienteCarteiraplano.value;
     this.paciente.paciente_planodesaude=this.PacientePlanodesaude.value;
     this.paciente.paciente_especialidade=this.PacienteEspecialidade.value;
     this.submitted = true;
@@ -39,23 +39,21 @@ export class AddPacienteComponent implements OnInit {
 
   save() {
     this.pacienteservice.createPaciente(this.paciente)
-      .subscribe(data => console.log("data aqui " +data), error => console.log("erro aqui " +error));
+      .subscribe(data => console.log(data), error => console.log(error));
     this.paciente = new Paciente();
-
   }
 
   get PacienteName(){
     return this.pacientesaveform.get('paciente_name');
   }
 
-  get PacienteCarteiradeplano(){
+  get PacienteCarteiraplano(){
     return this.pacientesaveform.get('paciente_carteiradeplano');
   }
 
   get PacientePlanodesaude(){
     return this.pacientesaveform.get('paciente_planodesaude');
   }
-
   get PacienteEspecialidade(){
     return this.pacientesaveform.get('paciente_especialidade');
   }

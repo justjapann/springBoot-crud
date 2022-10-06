@@ -1,130 +1,106 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h1 style="text-align: center">Paciente</h1><br>
-    <div class="row" [hidden]="!deleteMessage">
+      <h1 style="text-align: center">Pacientes</h1><br>
+      <div class="row" [hidden]="!deleteMessage">
 
-      <div class="col-sm-4"></div>
-      <div class="col-sm-4">
-        <div class="alert alert-info alert-dismissible">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-          <strong>Dados do paciente deletados</strong>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                        <div class="alert alert-info alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Dados do pacientes deletados</strong>
+                        </div>
+                </div>
+                <div class="col-sm-4"></div>
         </div>
-      </div>
-      <div class="col-sm-4"></div>
     </div>
-  </div>
 
 
   <div class="panel-body">
-    <table  class="table table-hover table-sm" datatable [dtOptions]="dtOptions"
-            [dtTrigger]="dtTrigger"  >
-      <thead class="thead-light">
-      <tr>
-        <th>Nome do paciente</th>
-        <th>Plano de saude</th>
-        <th>Especialidade</th>
-        <th>Ações</th>
+      <table  class="table table-hover table-sm" datatable [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"  >
+          <thead class="thead-light">
+              <tr>
+                  <th>Paciente</th>
+                  <th>Plano de saude</th>
+                  <th>Especialidade</th>
+                  <th>Ações</th>
 
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let student of pacientes ">
-        <td>{{student.paciente_name}}</td>
-        <td>{{student.paciente_planodesaude}}</td>
-        <td>{{student.paciente_especialidade}}</td>
-        <td><button (click)="deletePaciente(student.paciente_id)" class='btn btn-primary'><i class="fa fa-futboll-0">Excluir</i></button>
-          <button (click)="updatePaciente(student.paciente_id)" class='btn btn-info'
-                  data-toggle="modal" data-target="#myModal">Atualizar</button>
-        </td>
-      </tr>
-      </tbody><br>
-    </table>
+              </tr>
+          </thead>
+          <tbody>
+               <tr *ngFor="let paciente of pacientes">
+                  <td>{{paciente.paciente_name}}</td>
+                  <td>{{paciente.paciente_planodesaude}}</td>
+                  <td>{{paciente.paciente_especialidade}}</td>
+                  <td><button (click)="deletePaciente(paciente.paciente_id)" class='btn btn-primary'><i class="fa fa-futboll-0">Apagar</i></button>&nbsp;
+                    <button (click)="updatePaciente(paciente.paciente_id)" class='btn btn-info'
+                    data-toggle="modal" data-target="#myModal">Atualizar</button>
+                  </td>
+                </tr>
+          </tbody><br>
+      </table>
   </div>
 </div>
 
 <div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form [formGroup]="pacienteupdateform" #updpac (ngSubmit)="updatePac(updpac)">
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title" style="text-align: center">Update Student</h4>
+        <div class="modal-dialog">
+          <div class="modal-content">
+                <form [formGroup]="pacienteupdateform" #updpac (ngSubmit)="updatePac(updpac)">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title" style="text-align: center">Atualizar paciente</h4>
 
-        </div>
-
-        <!-- Modal body -->
-        <div class="modal-body" *ngFor="let student of pacientelist " >
-          <div [hidden]="isupdated">
-
-            <input type="hidden" class="form-control"  formControlName="paciente_id" [(ngModel)]="student.paciente_id">
-            <div class="form-group">
-              <label for="paciente_name">Student Name</label>
-              <input id="paciente_name" type="text" class="form-control"  formControlName="paciente_name" [(ngModel)]="student.paciente_name"  >
             </div>
 
-            <div class="form-group">
-              <label for="paciente_carteiradeplano">Student Email</label>
-              <input id="paciente_carteiradeplano" type="text" class="form-control" formControlName="paciente_carteiradeplano" [(ngModel)]="student.paciente_carteiradeplano">
+            <!-- Modal body -->
+            <div class="modal-body" *ngFor="let paciente of pacientelist " >
+                <div [hidden]="isupdated">
+
+                    <input type="hidden" class="form-control"  formControlName="paciente_id" [(ngModel)]="paciente.paciente_id">
+                            <div class="form-group">
+                                <label for="name">Paciente</label>
+                                <input type="text" class="form-control"  formControlName="paciente_name" [(ngModel)]="paciente.paciente_name"  >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Numero da carteira de plano</label>
+                                <input type="text" class="form-control" formControlName="paciente_carteiradeplano" [(ngModel)]="paciente.paciente_carteiradeplano">
+                            </div>
+
+
+                  <div class="form-group">
+                    <label for="name">Plano de saude</label>
+                    <select class="form-control" formControlName="paciente_planodesaude" required>
+                      <option value="uniMed" [selected]="'uniMed' == paciente.paciente_planodesaude">uniMed</option>
+                      <option value="INTERMÉDICA" [selected]="'INTERMÉDICA' == paciente.paciente_planodesaude">INTERMÉDICA</option>
+                      <option value="AMIL" [selected]="'AMIL' == paciente.paciente_planodesaude" >AMIL</option>
+                      <option value="SULAMÉRICA" [selected]="'SULAMÉRICA' == paciente.paciente_planodesaude">SULAMÉRICA</option>
+                    </select>
+                  </div>
+
+                            <div class="form-group">
+                                <label for="name">Especialidade do plano</label>
+                                  <select class="form-control" formControlName="paciente_especialidade" required>
+                                    <option value="Cardio" [selected]="'Cardio' == paciente.paciente_especialidade">Cardio</option>
+                                    <option value="Dentista" [selected]="'Dentista' == paciente.paciente_especialidade">Dentista</option>
+                                    <option value="Ambulatorio" [selected]="'Ambulatorio' == paciente.paciente_especialidade" >Ambulatorio</option>
+                                    <option value="Cirurgia" [selected]="'Cirurgia' == paciente.paciente_especialidade">Cirurgia</option>
+                                  </select>
+                            </div>
+                  </div>
+                  <div [hidden]="!isupdated">
+                      <h4>Paciente atualizado com sucesso!</h4>
+                  </div>
+
             </div>
 
-            <div class="form-group">
-              <label for="paciente_planodesaude">Student Branch</label>
-              <select id="paciente_planodesaude"  class="form-control" formControlName="paciente_planodesaude" required>
-                <option value="B-Tech" [selected]="'B-Tech' == student.paciente_planodesaude">B-Tech</option>
-                <option value="BCA" [selected]="'BCA' == student.paciente_planodesaude">BCA</option>
-                <option value="MCA" [selected]="'MCA' == student.paciente_planodesaude" >MCA</option>
-                <option value="M-Tech" [selected]="'M-Tech' == student.paciente_planodesaude">M-Tech</option>
-              </select>
+            <!-- Modal footer -->
+            <div class="modal-footer" >
+              <button type="submit" class="btn btn-success" [hidden]="isupdated">Atualizar</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeisUpdate()">Fechar</button>
             </div>
+
+        </form>
           </div>
-          <div [hidden]="!isupdated">
-            <h4>Student Detail Updated!</h4>
-          </div>
-
         </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer" >
-          <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeisUpdate()">Close</button>
-        </div>
-
-      </form>
-    </div>
-  </div>
-</div>
-<div class="input-group mb-3">
-  <h4>Procurar um paciente</h4>
-  <input
-    type="text"
-    class="form-control"
-    placeholder="Procurar paciente pelo nome"
-    [(ngModel)]="name"
-  />
-  <div class="input-group-append">
-    <button
-      class="btn btn-outline-secondary"
-      type="button"
-      (click)="searchPaciente()"
-    >
-      Procurar
-    </button>
-  </div>
-  <div class="col-md-12">
-    <ul class="list-group">
-      <li
-        class="list-group-item"
-        *ngFor="let name of names"
-      ><p>{{ name.paciente_name }}</p>
-        <p>{{ name.paciente_carteiradeplano }}</p>
-        <p>{{ name.paciente_planodesaude }}</p>
-        <p>{{ name.paciente_especialidade }}</p>
-
-        <div *ngIf="names.length == 0">
-          <br />
-          <p>Paciente nao foi encontrado</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
+      </div>

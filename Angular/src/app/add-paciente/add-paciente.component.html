@@ -1,72 +1,66 @@
-<h3>Criar nova ficha de paciente</h3>
+<h3>Criar paciente</h3>
 <div class="row">
   <div class="col-sm-4"></div>
   <div class="col-sm-4" >
     <div [hidden]="submitted" style="width: 400px;">
       <form [formGroup]="pacientesaveform" #savepaciente (ngSubmit)="savePaciente(savePaciente)">
-        <div class="form-group">
-          <label for="paciente_name">Nome do paciente</label>
-          <input id="paciente_name" type="text" class="form-control"  formControlName="paciente_name" data-toggle="tooltip"
-                 data-placement="right" title="Enter Paciente Name" >
-          <div class="alert alert-danger" *ngIf = "(PacienteName.touched) && (PacienteName.invalid)"
-               style="margin-top: 5px;">
-            <span *ngIf="PacienteName.errors.required">Nome do paciente obrigatorio</span>
-            <span *ngIf = "PacienteName.errors.minlength">
-                            MinLength Error
-                        </span>
+          <div class="form-group">
+              <label for="name">Paciente</label>
+              <input type="text" class="form-control"  formControlName="paciente_name" data-toggle="tooltip"
+                 data-placement="right" title="Nome do paciente" >
+              <div class="alert alert-danger" *ngIf = "(PacienteName.touched) && (PacienteName.invalid)"
+                style="margin-top: 5px;">
+                  <span *ngIf="PacienteName.errors.required">Nome do paciente obrigatorio</span>
+                    <span *ngIf = "PacienteName.errors.minlength">
+                        Nome muito pequeno
+                    </span>
+                </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="paciente_carteiradeplano">Carteira de plano do paciente</label>
-          <input id="paciente_carteiradeplano" type="text" class="form-control" formControlName="paciente_carteiradeplano"
-                 data-toggle="tooltip" data-placement="right" title="Enter Carteira de plano">
-          <div class="alert alert-danger" *ngIf = "(PacienteCarteiradeplano.touched) && (PacienteCarteiradeplano.invalid)"
-               style="margin-top: 5px;">
-            <span *ngIf="PacienteCarteiradeplano.errors.required">Carteira de plano obrigatoria</span>
-            <span *ngIf = "PacienteCarteiradeplano.errors.carteiradeplano">
-              carteira de plano invalida
-                        </span>
+          <div class="form-group">
+              <label for="name">Numero da carteira de plano</label>
+              <input type="text" class="form-control" formControlName="paciente_carteiradeplano"
+                data-toggle="tooltip" data-placement="right" title="Insira o numero da carteira de plano">
+
           </div>
-        </div>
+
+          <div class="form-group">
+              <label for="branch">Plano de saude</label>
+                <select class="form-control" formControlName="paciente_planodesaude" data-toggle="tooltip"
+                      data-placement="right" title="Plano de saude do paciente">
+                  <option value="uniMed">uniMed</option>
+                  <option value="INTERMÉDICA">INTERMÉDICA</option>
+                  <option value="AMIL">AMIL</option>
+                  <option value="SULAMÉRICA">SULAMÉRICA</option>
+                </select>
+          </div>
 
         <div class="form-group">
-          <label for="paciente_planodesaude">Plano de saude do paciente</label>
-          <select id="paciente_planodesaude" class="form-control" formControlName="paciente_planodesaude" data-toggle="tooltip"
-                  data-placement="right" title="Select Paciente Plano de saude">
-            <option value="null">--Selecionar Plano de saude--</option>
-            <option value="Intermédica">Intermédica</option>
-            <option value="uniMed">uniMed</option>
-            <option value="SulAmérica">SulAmérica</option>
-            <option value="Amil">Amil</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="paciente_especialidade">Especialidade do paciente</label>
-          <select id="paciente_especialidade" class="form-control" formControlName="paciente_especialidade" data-toggle="tooltip"
-                  data-placement="right" title="Select Paciente especialidade">
-            <option value="null">--Escolha a especialidade--</option>
+          <label for="branch">Especialidade do plano</label>
+          <select class="form-control" formControlName="paciente_especialidade" data-toggle="tooltip"
+                  data-placement="right" title="Escolha a especialidade do paciente">
             <option value="Cardio">Cardio</option>
             <option value="Dentista">Dentista</option>
-            <option value="Ambulatoriais">Ambulatoriais</option>
-            <option value="Cirurgias">Cirurgias</option>
+            <option value="Ambulatorio">Ambulatorio</option>
+            <option value="Cirurgia">Cirurgia</option>
           </select>
         </div>
 
-        <button type="submit" class="btn btn-success">Criar</button>
+          <button type="submit" class="btn btn-success">Criar</button>
       </form>
-    </div>
+  </div>
   </div>
   <div class="col-sm-4"></div>
 </div>
 <div class="row">
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
-    <div [hidden]="!submitted" *ngIf="">
-      <h4>Paciente adicionado com sucesso!</h4>
-      <button (click)="addPacienteForm()" class='btn btn-primary'>Criar nova ficha</button>
-    </div>
+      <div [hidden]="!submitted">
+         <h4>Ficha do paciente adicionada com sucesso!</h4>
+         <button (click)="addPacienteForm()" class='btn btn-primary'>Adicionar mais pacientes</button>
+      </div>
   </div>
   <div class="col-sm-4"></div>
 </div>
+
+

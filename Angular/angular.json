@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Angular": {
+    "FormSubmit": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Angular",
+            "outputPath": "dist/FormSubmit",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -23,9 +23,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/datatables.net-dt/css/jquery.dataTables.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/datatables.net/js/jquery.dataTables.js"
+            ],
+            "es5BrowserSupport": true
+            
           },
           "configurations": {
             "production": {
@@ -43,26 +52,32 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Angular:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "browserTarget": "FormSubmit:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Angular:build:production"
+              "browserTarget": "FormSubmit:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Angular:build"
+            "browserTarget": "FormSubmit:build"
           }
         },
         "test": {
@@ -73,16 +88,9 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/datatables.net-dt/css/jquery.dataTables.css"
+              "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/jquery/dist/jquery.js",
-              "node_modules/datatables.net/js/jquery.dataTables.js"
-            ],
+            "scripts": [],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -103,15 +111,21 @@
         }
       }
     },
-    "Angular-e2e": {
+    "FormSubmit-e2e": {
       "root": "e2e/",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Angular:serve"
+            "devServerTarget": "FormSubmit:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "FormSubmit:serve:production"
+            }
           }
         },
         "lint": {
@@ -126,5 +140,5 @@
       }
     }
   },
-  "defaultProject": "Angular"
+  "defaultProject": "FormSubmit"
 }

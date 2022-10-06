@@ -13,27 +13,33 @@ export class PacienteService {
   constructor(private http:HttpClient) { }
 
   getPacienteList(): Observable<any> {
+    const headers = { 'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json'}
     return this.http.get(`${this.baseUrl}`+'paciente-list');
   }
 
   createPaciente(paciente: object): Observable<object> {
+    const headers = { 'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json'}
     return this.http.post(`${this.baseUrl}`+'save-paciente', paciente);
   }
 
   deletePaciente(id: number): Observable<any> {
+
     return this.http.delete(`${this.baseUrl}/delete-paciente/${id}`, { responseType: 'text' });
   }
 
-  getPaciente(id: number): Observable<Object> {
+  getPacienteById(id: number): Observable<Object> {
+    const headers = { 'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json'}
     return this.http.get(`${this.baseUrl}/pacienteById/${id}`);
   }
 
   getPacienteByName(name: string): Observable<Object> {
+    const headers = { 'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json'}
     return this.http.get(`${this.baseUrl}/pacienteByName/${name}`);
   }
 
   updatePaciente(id: number, value: any): Observable<Object> {
-    return this.http.post(`${this.baseUrl}/update-paciente/${id}`, value);
+    const headers = { 'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json'}
+    return this.http.put(`http://localhost:8080/api/update-paciente/${id}`, value,{headers});
   }
 
 }

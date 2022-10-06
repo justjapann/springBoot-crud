@@ -8,7 +8,7 @@ import Model.Paciente;
 import Service.Paciente_Service;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 @RequestMapping(value="/api")
 public class Controller {
 

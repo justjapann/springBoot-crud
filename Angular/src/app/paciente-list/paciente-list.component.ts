@@ -12,21 +12,18 @@ import {FormControl,FormGroup,Validators} from '@angular/forms';
 })
 export class PacienteListComponent implements OnInit {
 
-  constructor(private pacienteservice:PacienteService) { }
+ constructor(private pacienteservice:PacienteService) { }
 
   pacientesArray: any[] = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any>= new Subject();
+
 
   pacientes: any;
   paciente : Paciente=new Paciente();
   deleteMessage=false;
   pacientelist:any;
   isupdated = false;
-  names: any;
-  currentTutorial = null;
-  currentIndex = -1;
-  name = '';
 
 
   ngOnInit() {
@@ -38,26 +35,9 @@ export class PacienteListComponent implements OnInit {
       processing: true
     };
     this.pacienteservice.getPacienteList().subscribe(data =>{
-      this.pacientes =data;
-      this.dtTrigger.next();
+    this.pacientes =data;
+    this.dtTrigger.next();
     })
-  }
-
-  searchPaciente() {
-    this.pacienteservice.getPacienteByName(this.name)
-      .subscribe(
-        data => {
-          this.names = data;
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
-  setActiveTutorial(name, index) {
-    this.currentTutorial = name;
-    this.currentIndex = index;
   }
 
   deletePaciente(id: number) {
@@ -68,13 +48,14 @@ export class PacienteListComponent implements OnInit {
           this.deleteMessage=true;
           this.pacienteservice.getPacienteList().subscribe(data =>{
             this.pacientes =data
-          })
+            })
         },
         error => console.log(error));
   }
 
+
   updatePaciente(id: number){
-    this.pacienteservice.getPaciente(id)
+    this.pacienteservice.getPacienteById(id)
       .subscribe(
         data => {
           this.pacientelist=data
@@ -85,36 +66,36 @@ export class PacienteListComponent implements OnInit {
   pacienteupdateform=new FormGroup({
     paciente_id:new FormControl(),
     paciente_name:new FormControl(),
-    paciente_planodesaude:new FormControl(),
     paciente_carteiradeplano:new FormControl(),
+    paciente_planodesaude:new FormControl(),
     paciente_especialidade:new FormControl()
   });
 
   updatePac(updpac){
     this.paciente=new Paciente();
-    this.paciente.paciente_id=this.PacienteId.value;
-    this.paciente.paciente_name=this.PacienteNome.value;
-    this.paciente.paciente_planodesaude=this.PacientePlanodesaude.value;
-    this.paciente.paciente_carteiradeplano=this.PacienteCarteiradeplano.value;
-    this.paciente.paciente_especialidade=this.PacienteEspecialidade.value;
-    console.log(this.PacientePlanodesaude.value);
+   this.paciente.paciente_id=this.PacienteId.value;
+   this.paciente.paciente_name=this.PacienteName.value;
+   this.paciente.paciente_carteiradeplano=this.PacienteCarteiraplano.value;
+   this.paciente.paciente_planodesaude=this.PacientePlanodesaude.value;
+   this.paciente.paciente_especialidade=this.PacienteEspecialidade.value;
+   console.log(this.PacienteCarteiraplano.value);
 
 
-    this.pacienteservice.updatePaciente(this.paciente.paciente_id,this.paciente).subscribe(
-      data => {
-        this.isupdated=true;
-        this.pacienteservice.getPacienteList().subscribe(data =>{
-          this.pacientes =data
+   this.pacienteservice.updatePaciente(this.paciente.paciente_id,this.paciente).subscribe(
+    data => {
+      this.isupdated=true;
+      this.pacienteservice.getPacienteList().subscribe(data =>{
+        this.pacientes =data
         })
-      },
-      error => console.log(error));
+    },
+    error => console.log(error));
   }
 
-  get PacienteNome(){
+  get PacienteName(){
     return this.pacienteupdateform.get('paciente_name');
   }
 
-  get PacienteCarteiradeplano(){
+  get PacienteCarteiraplano(){
     return this.pacienteupdateform.get('paciente_carteiradeplano');
   }
 

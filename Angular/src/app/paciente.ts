@@ -1,11 +1,8 @@
 export class Paciente {
 
-  paciente_id: number;
-  paciente_name: string;
+    paciente_id:number;
+    paciente_name:String;
   paciente_carteiradeplano:number;
-  paciente_planodesaude:string;
-  paciente_especialidade:string;
+    paciente_planodesaude=String;
+    paciente_especialidade=String;
 }
-
-
-
