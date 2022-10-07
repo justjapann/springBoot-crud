@@ -7,17 +7,22 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 
 import Model.Paciente;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Repository
 public class Paciente_DAO_Imp  implements Paciente_DAO{
 
+
+
     @Autowired
     private SessionFactory sessionFactory;
 
+    @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="oops")
     @Override
     public boolean savePaciente(Paciente paciente) {
         Session currentSession = sessionFactory.getCurrentSession();
@@ -27,9 +32,9 @@ public class Paciente_DAO_Imp  implements Paciente_DAO{
         System.out.println("lista aqui = " + list);
         if (list.isEmpty()) {
            currentSession.save(paciente);
-            return true;
+            throw new ResourceAccept("Paciente " + paciente.getPaciente_name() + " criado com sucesso");
         }else{
-            return false;
+            throw new ResourceNotFoundException("Ja existe um paciente com o nome " + paciente.getPaciente_name());
         }
 
     }
@@ -72,9 +77,9 @@ public class Paciente_DAO_Imp  implements Paciente_DAO{
         return list;
     }
 
+    @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR, reason="oops")
     @Override
     public boolean updatePaciente(Paciente paciente) {
-        boolean status=false;
         Session currentSession = sessionFactory.getCurrentSession();
         Query query=currentSession.createQuery("from Paciente where paciente_name=:paciente_name and paciente_especialidade=:paciente_especialidade", Paciente.class);
         query.setParameter("paciente_name", paciente.getPaciente_name());
@@ -86,7 +91,7 @@ public class Paciente_DAO_Imp  implements Paciente_DAO{
             sessionFactory.getCurrentSession().update(paciente);
             return true;
         }else{
-            return false;
+            throw new ResourceNotFoundException("O paciente ja tem a especialidade " + paciente.getPaciente_especialidade() + " no plano " + paciente.getPaciente_planodesaude());
         }
     }
 

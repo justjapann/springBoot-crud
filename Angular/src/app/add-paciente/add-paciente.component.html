@@ -56,9 +56,15 @@
   <div class="col-sm-4"></div>
   <div class="col-sm-4">
       <div [hidden]="!submitted">
-         <h4>Ficha do paciente adicionada com sucesso!</h4>
+         <h4>{{msg}}</h4>
          <button (click)="addPacienteForm()" class='btn btn-primary'>Adicionar mais pacientes</button>
       </div>
+  </div>
+  <div class="col-sm-4">
+    <div *ngIf="">
+      <h4>Ja existe um paciente com esse nome!</h4>
+      <button (click)="addPacienteForm()" class='btn btn-primary'>Adicionar mais pacientes</button>
+    </div>
   </div>
   <div class="col-sm-4"></div>
 </div>

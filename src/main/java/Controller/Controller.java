@@ -2,10 +2,13 @@ package Controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import Model.Paciente;
 import Service.Paciente_Service;
+
+import static org.springframework.http.ResponseEntity.notFound;
 
 @RestController
 @CrossOrigin(origins="*")

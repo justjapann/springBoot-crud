@@ -24,22 +24,21 @@ export class PacienteService {
 
   deletePaciente(id: number): Observable<any> {
 
-    return this.http.delete(`${this.baseUrl}/delete-paciente/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.baseUrl}delete-paciente/${id}`, { responseType: 'text' });
   }
 
   getPacienteById(id: number): Observable<Object> {
     const headers = { 'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json'}
-    return this.http.get(`${this.baseUrl}/pacienteById/${id}`);
+    return this.http.get(`${this.baseUrl}pacienteById/${id}`);
   }
 
   getPacienteByName(name: string): Observable<Object> {
     const headers = { 'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json'}
-    return this.http.get(`${this.baseUrl}/pacienteByName/${name}`);
+    return this.http.get(`${this.baseUrl}pacienteByName/${name}`);
   }
 
   updatePaciente(id: number, value: any): Observable<Object> {
-    const headers = { 'Access-Control-Allow-Origin':'*', 'Content-Type': 'application/json'}
-    return this.http.put(`http://localhost:8080/api/update-paciente/${id}`, value,{headers});
+    return this.http.put(`${this.baseUrl}update-paciente/${id}`, value);
   }
 
 }

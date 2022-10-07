@@ -11,6 +11,7 @@ export class AddPacienteComponent implements OnInit {
 
   constructor(private pacienteservice:PacienteService) { }
 
+  msg: string;
   paciente : Paciente=new Paciente();
   submitted = false;
 
@@ -39,7 +40,14 @@ export class AddPacienteComponent implements OnInit {
 
   save() {
     this.pacienteservice.createPaciente(this.paciente)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => {
+        this.msg = "Paciente adicionado com sucesso!"
+        console.log(data)
+        },
+          error => {
+        this.msg = "Ja existe um paciente com esse nome"
+            console.log(error)
+          });
     this.paciente = new Paciente();
   }
 

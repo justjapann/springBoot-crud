@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  db:
+    image: 'mysql/mysql-server:5.7'
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD="%"
+      - MYSQL_DATABASE=bai
+      - MYSQL_USER=root
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_ROOT_HOST=%
+    volumes:
+      - ./my-datavolume:/var/lib/mysql
+    healthcheck:
+      test: ["CMD","mysqladmin","ping","-h","localhost"]
+      timeout: 20s
+      retries: 10
+    restart: always
+    networks:
+      - spring-network
+
+  backendserver:
+    build: ./target
+    ports:
+      - "8080"
+    links:
+      - "db"
+    depends_on:
+      - db
+    networks:
+      - spring-network
+    restart: always
+
+  frontend:
+    build: ./Angular
+    links:
+      - "backendserver"
+    depends_on:
+      - "backendserver"
+    ports:
+      - "4200:4200"
+
+networks:
+  spring-network:
+    driver: bridge
