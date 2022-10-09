@@ -16,6 +16,6 @@
 
 ### Images
 
-![home](https://github.com/justjapann/springBoot-crud/tree/main/Angular/assets/home.png)
-![create](https://github.com/justjapann/springBoot-crud/tree/main/Angular/assets/createPaciente.png)
-![update](https://github.com/justjapann/springBoot-crud/tree/main/Angular/assets/updatePaciente.png)
+![home](https://github.com/justjapann/springBoot-crud/blob/main/Angular/assets/home.png)
+![create](https://github.com/justjapann/springBoot-crud/blob/main/Angular/assets/createPaciente.png)
+![update](https://github.com/justjapann/springBoot-crud/blob/main/Angular/assets/updatePaciente.png)
