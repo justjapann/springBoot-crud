@@ -88,9 +88,12 @@
                                   </select>
                             </div>
                   </div>
-                  <div [hidden]="!isupdated">
-                      <h4>Paciente atualizado com sucesso!</h4>
+                  <div [hidden]="!isupdated" *ngIf="isupdated == true">
+                    <h4>Paciente atualizado com sucesso</h4>
                   </div>
+              <div [hidden]="!isupdated" *ngIf="isupdated == false">
+                <h4>O paciente ja tem essa especialidade no plano {{paciente.paciente_planodesaude}}</h4>
+              </div>
 
             </div>
 

@@ -17,6 +17,7 @@ export class PacienteListComponent implements OnInit {
   pacientesArray: any[] = [];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any>= new Subject();
+  msg: string;
 
 
   pacientes: any;
@@ -60,7 +61,9 @@ export class PacienteListComponent implements OnInit {
         data => {
           this.pacientelist=data
         },
-        error => console.log(error));
+        error => {
+          console.log(error)
+        });
   }
 
   pacienteupdateform=new FormGroup({
@@ -88,7 +91,9 @@ export class PacienteListComponent implements OnInit {
         this.pacientes =data
         })
     },
-    error => console.log(error));
+    error => {
+      console.log(error)
+    });
   }
 
   get PacienteName(){
