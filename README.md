@@ -7,3 +7,15 @@
 
 ### Compile project and generate .jar file
 - use `mvn clean install` in root folder
+
+### Functions
+- Home page with patient details
+- Create new patient
+- Update patient
+- Delete patient
+
+### Images
+
+![home](https://github.com/justjapann/springBoot-crud/tree/main/Angular/assets/home.png)
+![create](https://github.com/justjapann/springBoot-crud/tree/main/Angular/assets/createPaciente.png)
+![update](https://github.com/justjapann/springBoot-crud/tree/main/Angular/assets/updatePaciente.png)
